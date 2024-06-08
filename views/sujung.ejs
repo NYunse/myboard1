@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Post</h1>
+        <form id="editPostForm" action="/update" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_id" value="<%= postId %>">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= title %>">
+            </div>
+            <div class="mb-3">
+                <label for="caption" class="form-label">Caption</label>
+                <textarea class="form-control" id="caption" name="caption" rows="3"><%= caption %></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image">
+                <img src="<%= image %>" alt="Current Image" class="mt-2" style="max-width: 300px;">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('editPostForm').addEventListener('submit', function(event) {
+            // 여기서 필요한 유효성 검사를 수행할 수 있습니다.
+            const title = document.getElementById('title').value;
+            const caption = document.getElementById('caption').value;
+
+            if (!title || !caption) {
+                alert('Title and Caption are required.');
+                event.preventDefault(); // 폼 제출을 막습니다.
+            }
+        });
+    </script>
+</body>
+</html>
